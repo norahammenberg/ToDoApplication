@@ -12,13 +12,14 @@ namespace ToDoApplication
 {
     public partial class MainForm : Form
     {
-        Task task = new Task();
-        
+        TaskManager taskManager = new TaskManager();
+       
         public MainForm()
         {
             InitializeComponent();
             comboBoxPrio.DataSource = Enum.GetValues(typeof(PriorityType));
-            task.testOut();
+
+            taskManager.test();
         }
     }
 }

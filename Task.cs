@@ -61,7 +61,7 @@ namespace ToDoApplication
 
         public override string ToString()
         {
-           
+            
             string selectedPriority = priority.ToString();
             string choosenDateAndTime = dateAndTime.ToString();
             string createdTask = string.Format("{0, -25} {1, -8} {2, -10}", choosenDateAndTime, description, selectedPriority);
@@ -77,7 +77,10 @@ namespace ToDoApplication
         /// </summary>
         public void testOut()
         {
+            description = "We need to do this";
+            ToString();
             Console.WriteLine(dateAndTime);
+            Console.WriteLine(ToString());
             Console.ReadLine();
         }
     }
