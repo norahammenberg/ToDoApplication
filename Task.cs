@@ -21,16 +21,15 @@ namespace ToDoApplication
         {
             description = string.Empty;
             dateAndTime = DateTime.Now;
-            priority = PriorityType.Normal;
-            Console.WriteLine(dateAndTime);
+            priority = PriorityType.Normal; 
         }
-        
+
         //properties:
 
-        /// <summary>
-        /// getter and setter for the Description.
-        /// If the string provided by the user is not nyll or empty the save the users input to the variable. 
-        /// </summary>
+    /// <summary>
+    /// getter and setter for the Description.
+    /// If the string provided by the user is not nyll or empty the save the users input to the variable. 
+    /// </summary>
         public string Description 
         { 
             get { return description; }
@@ -52,6 +51,9 @@ namespace ToDoApplication
             set { dateAndTime = value; }
         }
         
+        /// <summary>
+        /// getter and setter for the Prioretytype. 
+        /// </summary>
         public PriorityType Priority 
         { 
             get { return priority; } 
@@ -59,29 +61,34 @@ namespace ToDoApplication
         }
         //methods:
 
-        public override string ToString()
+        /// <summary>
+        /// Thes method returns the time in a string format so that it can be written out in the application. 
+        /// </summary>
+        /// <returns></returns>
+        private string timeToString()
         {
-            
-            string selectedPriority = priority.ToString();
-            string choosenDateAndTime = dateAndTime.ToString();
-            string createdTask = string.Format("{0, -25} {1, -8} {2, -10}", choosenDateAndTime, description, selectedPriority);
-            return createdTask;
+            string time = string.Format("{0}:{1}", dateAndTime.Hour.ToString("00"), dateAndTime.Minute.ToString("00"));
+            return time;
+        }
+        /// <summary>
+        /// Method that takes the choosen enum and return it as a string with out the _ and wit a space instead to make the application looking nicer. 
+        /// </summary>
+        /// <returns></returns>
+        private string enumToString()
+        {
+            string prioString = Enum.GetName(typeof(PriorityType), priority);
+            prioString = prioString.Replace("_", " ");
+            return prioString;
         }
 
-
-
-
-
         /// <summary>
-        /// Test method for debuging reasons.
+        /// This method creates one string of all the inputs that the user is given the application and returns it to be able to write it out in the listbox. . 
         /// </summary>
-        public void testOut()
+        /// <returns></returns>
+        public override string ToString()
         {
-            description = "We need to do this";
-            ToString();
-            Console.WriteLine(dateAndTime);
-            Console.WriteLine(ToString());
-            Console.ReadLine();
+            string createdTask = $"{dateAndTime.ToLongDateString(),-25} {timeToString(),12} {" ",6} {enumToString(),-16} {description,-20}";
+            return createdTask;
         }
     }
 }
